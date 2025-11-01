@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:purrweb_test_shop/widgets/block_divider.dart';
-import 'package:purrweb_test_shop/widgets/discount_banner.dart';
+import 'package:purrweb_test_shop/widgets/home_blocks/block_divider.dart';
+import 'package:purrweb_test_shop/widgets/home_blocks/care_category_grid.dart';
+import 'package:purrweb_test_shop/widgets/home_blocks/discount_banner.dart';
+import 'package:purrweb_test_shop/widgets/home_blocks/personal_care_plan.dart';
 import 'package:purrweb_test_shop/widgets/scroll_horizontal/scroll_horizontal_catalog.dart';
 import 'package:purrweb_test_shop/widgets/scroll_horizontal/scroll_horizontal_catalog_new.dart';
 import 'package:purrweb_test_shop/widgets/scroll_horizontal/scroll_horizontal_discont.dart';
-import 'package:purrweb_test_shop/widgets/scroll_horizontal/scroll_horizontal_setup.dart';
+import 'package:purrweb_test_shop/widgets/scroll_horizontal/scroll_horizontal_hit.dart';
 
 
 
@@ -60,81 +62,7 @@ class _HomeBodyState extends State<HomeBody> {
           ),
 
 
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/images/BgBlock.png'),fit: BoxFit.cover),
-            ),
-            width: MediaQuery.of(context).size.width,
-            height: 250,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 25),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text('Моя схема домашнего ухода',style: TextStyle(color: Colors.black,fontSize: 16,fontWeight: FontWeight.bold),),
-
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  SizedBox(
-                    width: 364,
-                    height: 101,
-                    child: ScrollHorizontalSetup(),
-                  ),
-
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: 201,
-                        height: 35,
-                        child: Text(
-                          'Ответьте на 10 вопросов, и мы подберем нужный уход',
-                          maxLines: 2,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 20),
-                      SizedBox(
-                        width: 120,
-                        height: 40,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Color.fromRGBO(43, 43, 43, 1)),
-                            shape: MaterialStateProperty.all(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                            ),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Пройти тест',
-                            maxLines: 1,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
+          PersonalCarePlan(),
 
           const SizedBox(
             height: 20,
@@ -161,6 +89,12 @@ class _HomeBodyState extends State<HomeBody> {
             height: 20,
           ),
 
+          CareCategoryGrid(),
+
+          const SizedBox(
+            height: 20,
+          ),
+
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: BlockDivider(
@@ -171,6 +105,11 @@ class _HomeBodyState extends State<HomeBody> {
 
           const SizedBox(
             height: 20,
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 25),
+            child: ScrollHorizontalHit(),
           ),
 
           const SizedBox(

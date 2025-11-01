@@ -13,31 +13,39 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
+  final List<GlobalKey<NavigatorState>> _navigatorKeys = [
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final body = [
-      HomeBody(),
-      CatalogBody(),
-      BasketBody(),
-      ProfileBody()
+    final bodies = [
+      _buildNavigator(0, HomeBody()),
+      _buildNavigator(1, CatalogBody()),
+      _buildNavigator(2, BasketBody()),
+      _buildNavigator(3, ProfileBody()),
     ];
 
     return Scaffold(
-
-      body: body[_currentIndex],
+      backgroundColor: Colors.white,
+      body: bodies[_currentIndex],
       
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         selectedItemColor: Colors.black,
         unselectedItemColor: Color.fromRGBO(112, 117, 127, 1),
         showSelectedLabels: true,
         showUnselectedLabels: true,
         currentIndex: _currentIndex,
-        onTap: (index){
+        onTap: (index) {
+          if (index == _currentIndex) {
+            _navigatorKeys[index].currentState?.popUntil((route) => route.isFirst);
+          }
           setState(() {
             _currentIndex = index;
-            print(_currentIndex);
-            
           });
         },
         items: [
@@ -47,6 +55,17 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(icon: Image(image: AssetImage('assets/icons/User.png')), activeIcon: Image(image: AssetImage('assets/icons/User.png'),color: Colors.black,),label: 'Профиль'),
         ]
       ),
+    );
+  }
+
+  Widget _buildNavigator(int index, Widget initialPage) {
+    return Navigator(
+      key: _navigatorKeys[index],
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => initialPage,
+        );
+      },
     );
   }
 }

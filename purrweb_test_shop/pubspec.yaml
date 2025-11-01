@@ -82,6 +82,11 @@ flutter:
     - assets/image_setup/Serum.png
     - assets/discontImage/Muse Serum Supreme.png
     - assets/discontImage/Unstress Revitalizing Toner.png
+    - assets/hit_image/Forever.png
+    - assets/hit_image/Illustious.png
+    - assets/icons/iconDiscont.png
+    - assets/images/BgTwo.png
+    - assets/icons/FadersHorizontal.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

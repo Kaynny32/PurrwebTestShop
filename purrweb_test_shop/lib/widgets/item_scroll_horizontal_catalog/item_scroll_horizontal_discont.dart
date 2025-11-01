@@ -31,49 +31,43 @@ class _ItemScrollHorizontalDiscontState extends State<ItemScrollHorizontalDiscon
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onPressed,
-      borderRadius: BorderRadius.circular(8), // Добавлено скругление для InkWell
+      borderRadius: BorderRadius.circular(8),
       child: SizedBox(
         width: widget.width,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Контейнер для изображения с фоном
-            Container(
+
+            SizedBox(
               width: widget.width,
-              height: widget.height * 0.7, // Изображение занимает 70% высоты
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey[100], // Фон на случай если изображение не загрузится
-              ),
+              height: widget.height * 0.6, 
+              
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image(
                   image: AssetImage(widget.urlImage),
-                  fit: BoxFit.cover, // Чтобы изображение заполняло контейнер
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
         
             const SizedBox(height: 8),
-        
-            // Категория
+
             Text(
               widget.textTitle, 
               style: TextStyle(
-                color: Colors.grey[600],
+                color: Color.fromRGBO(43, 43, 43, 1),
                 fontSize: 12,
                 fontWeight: FontWeight.w500,
               ),
             ),
         
             const SizedBox(height: 4),
-        
-            // Название товара
+
             Text(
               widget.textName, 
               maxLines: 2, 
-              overflow: TextOverflow.ellipsis, // Добавлено для красоты
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 14,
@@ -82,26 +76,10 @@ class _ItemScrollHorizontalDiscontState extends State<ItemScrollHorizontalDiscon
             ),
         
             const SizedBox(height: 8),
-        
-            // Цены
-            _buildPriceSection(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Виджет для отображения цен
-  Widget _buildPriceSection() {
-    final hasDiscount = widget.price != widget.discontePrice;
-    
-    if (hasDiscount) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+            
+            Row(
             children: [
-              // Новая цена
+              
               Text(
                 '${widget.price} P',
                 style: TextStyle(
@@ -110,11 +88,14 @@ class _ItemScrollHorizontalDiscontState extends State<ItemScrollHorizontalDiscon
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              // Старая цена (зачеркнутая)
+
+              SizedBox(width: 15,),
+              
+              if(widget.discontePrice != '')
               Text(
                 '${widget.discontePrice} P',
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Color.fromRGBO(43, 43, 43, 1),
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
                   decoration: TextDecoration.lineThrough,
@@ -123,18 +104,9 @@ class _ItemScrollHorizontalDiscontState extends State<ItemScrollHorizontalDiscon
               const SizedBox(height: 2),              
             ],
           )
-        ],
-      );
-    } else {
-      // Обычная цена без скидки
-      return Text(
-        '${widget.price} P',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
+          ],
         ),
-      );
-    }
+      ),
+    );
   }
 }

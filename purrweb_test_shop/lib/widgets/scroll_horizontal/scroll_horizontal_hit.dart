@@ -1,41 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:purrweb_test_shop/widgets/item_scroll_horizontal_catalog/item_scroll_horizontal_discont.dart';
+import 'package:purrweb_test_shop/widgets/item_scroll_horizontal_catalog/item_scroll_horizontal_catalog_new.dart';
 
-class ScrollHorizontalDiscont extends StatefulWidget {
-  const ScrollHorizontalDiscont({super.key});
+class ScrollHorizontalHit extends StatefulWidget {
+  const ScrollHorizontalHit({super.key});
 
   @override
-  State<ScrollHorizontalDiscont> createState() => _ScrollHorizontalDiscontState();
+  State<ScrollHorizontalHit> createState() => _ScrollHorizontalHitState();
 }
 
-class _ScrollHorizontalDiscontState extends State<ScrollHorizontalDiscont> {
+class _ScrollHorizontalHitState extends State<ScrollHorizontalHit> {
+
   final List<Map<String, dynamic>> _items = [
     {
       'textTitle': 'Сыворотка',
-      'textName': 'Muse Serum Supreme',
+      'textName': 'Forever Young- TotalRenewal Serum',
       'price': '10 195',
-      'discontePrice': '10 195',
-      'urlImage': 'assets/discontImage/Muse Serum Supreme.png',
+      'urlImage': 'assets/hit_image/Forever.png',
     },
     {
-      'textTitle': 'Крем',
-      'textName': 'Unstress Revitalizing Toner',
+      'textTitle': 'Осветляющая маска',
+      'textName': 'Illustious Mask',
       'price': '1595',
-      'discontePrice': '3195',
-      'urlImage': 'assets/discontImage/Unstress Revitalizing Toner.png',
+      'urlImage': 'assets/hit_image/Illustious.png',
     },
     {
       'textTitle': 'Тоник',
       'textName': 'Unstress Revitalizing Toner',
       'price': '3095',
-      'discontePrice': '',
       'urlImage': 'assets/images/Tonic.png',
     },
   ];
 
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(      
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.90,
       height: 280,
       child: ListView.builder(
@@ -47,14 +46,13 @@ class _ScrollHorizontalDiscontState extends State<ScrollHorizontalDiscont> {
             padding: EdgeInsets.only(
               right: index < _items.length - 1 ? 15 : 0, 
             ),
-            child: ItemScrollHorizontalDiscont(
+            child: ItemScrollHorizontalCatalogNew(
               width: 163,
-              height: 280,
+              height: 188,
               onPressed: () {},
               textTitle: item['textTitle'],
               textName: item['textName'],
               price: item['price'],
-              discontePrice: item['discontePrice'],
               urlImage: item['urlImage'],              
             ),
           );

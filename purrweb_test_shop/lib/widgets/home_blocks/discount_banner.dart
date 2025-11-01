@@ -128,12 +128,12 @@ class _DiscountBannerState extends State<DiscountBanner> {
                     child: ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Colors.transparent),
-                        elevation: MaterialStateProperty.all(0),
-                        side: MaterialStateProperty.all(
+                        WidgetStateProperty.all(Colors.transparent),
+                        elevation: WidgetStateProperty.all(0),
+                        side: WidgetStateProperty.all(
                           BorderSide(color: Colors.white, width: 1),
                         ),
-                        shape: MaterialStateProperty.all(
+                        shape: WidgetStateProperty.all(
                           RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),
@@ -172,6 +172,7 @@ class _DiscountBannerState extends State<DiscountBanner> {
                     shape: BoxShape.circle,
                     color: _currentPage == index 
                         ? Colors.white 
+                        // ignore: deprecated_member_use
                         : Colors.white.withOpacity(0.5),
                   ),
                 );
